@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="main.js"></script> -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+   <div class="main">
+       <label class="page1" for="id">ID:</label>
+       <input class="page2" type = "number" id="id"/><br/><br/>
+       <label class="page1" for="name">Name:</label>
+       <input class="page2" type = "text" id="name"/><br/><br/>
+       <label class="page1" for="salary">Basic Salary:</label>
+       <input class="page2" type = "number" id="salary"/><br/><br/>
+
+       <div id="error" style="color: brown"></div>
+       <button class="btn" onclick="myFunction()" type="submit" id="Button">ADD</button>
+
+       <div id="demo"></div>
+       <div class="validation"></div>
+       <p id="find"></p>
+
+   </div> 
+   <script>
+       var EMPLOYEE = [];
+       function myFunction(){
+           var Emp_Id = document.getElementById("id").value;
+           console.log(Emp_Id);
+           var Emp_Name = document.getElementById("name").value;
+           console.log(Emp_Name);
+           var Emp_Salary = document.getElementById("salary").value;
+           console.log(Emp_Salary);
+
+           if(Emp_Id =="" || Emp_Name =="" || Emp_Salary == ""){
+               document.getElementById("error").innerHTML="All field must be filled";
+           }
+           var Details ={
+               Empid:`${Emp_Id}`,
+               Empname:`${Emp_Name}`,
+               Empsalary:`${Emp_Salary}`,
+          
+           };
+           EMPLOYEE.push(Details);
+
+           EMPLOYEE.forEach((element) => {
+               element.Emp_Salary = 30000;
+           });
+           Display();
+       }
+       function Display(){
+           html_header = `<table><tr><th>ID</th><th>Name</th><th>Basic Salary</th><th> Updated Salary</th></tr>`;
+            html_footer = `<tr><th></th><th></th><th></th><tr></table>`;
+                var row = "";
+                row +=`<tr><td>${id}</td><td>${name}</td><td>${salary}</td><td></td></tr>`;
+
+                try{
+                    EMPLOYEE.forEach((element) => {
+                        // var good;
+                        // var a =Empsalary;
+                        // var b = (Empsalary*75/100);
+                        // hello = () => {
+                        //     return(a-b);
+                        // }
+                        if(element.Empsalary > 0) {
+                            var updatedSal = element.Empsalary *1.1;
+                            html_header += `<tr>
+                                <td>${element.Empid}</td>
+                                <td>${element.Empname}</td>
+                                <td>${element.Empsalary}</td>
+                                <td>${updatedSal}</td>
+                                <tr>`;
+                        }
+                        else {
+                            alert("your salary is less than or equal to zero");
+                        }
+                    });
+                    document.getElementById("demo").innerHTML = html_header+html_footer;
+                } catch (find) {
+                    alert("There is some error");
+                }
+       }
+       class Employee {
+           function () {
+               var Emp_Id = document.getElementById("id").value;
+               console.log(Emp_Id);
+               var Emp_Name = document.getElementById("name").value;
+               var Emp_Salary = document.getElementById("salary").value;
+               //"use strict";
+               //Emp_Salary = 30000;
+               var Details = {
+                   Empid:`${Emp_Id}`,
+                   Empname: `${Emp_Name}`,
+                   Empsalary: `${Emp_Salary}`,
+               };
+           }
+       }
+   </script>
+</body>
+</html>
